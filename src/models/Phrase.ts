@@ -20,8 +20,4 @@ export const Phrase = sequelize.define<PhraseInstance>('Phrase',{
         type:DataTypes.STRING
     }
 },
- {
-        tableName:'phrases',
-        timestamps:false
-    
-});
+ 

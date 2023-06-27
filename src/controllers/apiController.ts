@@ -25,3 +25,57 @@ export const createPhrase = async(req:Request,res:Response)=>{
     res.json({id: newNewPhrase.id,author,txt})
 
 }
+
+export const listPrases = async(req:Request,res:Response)=>{
+    let list = await Phrase.findAll();
+    res.json({list})
+
+}
+export const getPrase = async(req:Request,res:Response)=>{
+    let {id} = req.params
+    let phrase = await Phrase.findByPk(id)
+    if(phrase){
+        res.json({phrase})
+    }else{
+        res.json({error:'FRASE NÃO ENCONTRADA'})
+    }
+
+    
+
+}
+export const updatePhrase = async(req:Request,res:Response)=>{
+    let {id} = req.params
+    let{author,txt}=req.body
+    
+    let phrase = await Phrase.findByPk(id)
+    if(phrase){
+        phrase.author=author
+        phrase.txt=txt
+        await phrase.save();
+        res.json({phrase})
+    }else{
+        res.json({error:'FRASE NÃO ENCONTRADA'})
+    }
+
+    
+
+}
+export const deletePhrase = async(req:Request,res:Response)=>{
+    let {id} = req.params
+    
+    
+    let phrase = await Phrase.findByPk(id)
+    if(phrase){
+        phrase.author=author
+        phrase.txt=txt
+        await phrase.save();
+        res.json({phrase})
+    }else{
+        res.json({error:'FRASE NÃO ENCONTRADA'})
+    }
+
+    
+
+}
+
+
